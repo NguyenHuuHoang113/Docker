@@ -9,7 +9,8 @@
 ### **Introduction** : 
  **Docker** : một  open platform của developing, shipping, and running applications ,  a technology cho phép  us to wrap ứng dụng  ___one package___, which are ___portable___ (run anywhere) and ___executable___ (run anytime).
 
- **A container** : là quá trình chạy trên máy chủ
+ **A container** :  một đối tượng thực thi của một image Docker.
+ **Image** :  là một mẫu để tạo ra các container
 
 
 ### **Docker run reference** 
@@ -95,9 +96,14 @@ Ket qua : se duoc in ra mot [container ID]
 Vi du
 
 #### Docker build : được sử dụng để tạo một Docker image mới từ một Dockerfile . 
-Cách dung : 
-    
+Cách dung  : 
+    <code>
+
         docker build [OPTIONS] PATH | URL | -
+
+</code>
+
+Ví du
 
 
 Với **COMMAND** :
@@ -117,7 +123,7 @@ Với **COMMAND** :
 
     docker checkpoint rm
 
-Docker images : dùng để kiểm tra list repo
+#### Docker images : dùng để kiểm tra list repo
 
 Cách dùng : 
 
@@ -138,7 +144,7 @@ Ví dụ bạn muốn kiểm tra danh sách repo mà mình đang có bạn sẽ 
 </code>
 
 
-Docker stop : dừng hoặc ngừng tất cả repo đang chạy 
+#### Docker stop : dừng hoặc ngừng tất cả repo đang chạy 
 
 Cách dùng : 
 <code>
@@ -149,39 +155,146 @@ Cách dùng :
 
 ví dụ bạn muốn tạm dừng 1 CONTAINER đang chạy : 
 <code>
+
         C:\Users\Hoang>docker ps
         CONTAINER ID   IMAGE          COMMAND              CREATED        STATUS       PORTS                  NAMES
         51303185adb8   httpd:latest   "httpd-foreground"   37 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp   my-apache-container
-
         C:\Users\Hoang>docker stop 51303185adb8
         51303185adb8
 
-    </code>
+</code>
 
-    Docker start : dùng để bắt đầu chạy CONTAINER
+#### Docker start : dùng để bắt đầu chạy CONTAINER
 
     Cách dùng : 
-    <code>
+<code>
 
-    docker start [OPTIONS] CONTAINER [CONTAINER...]
-    </code>
+        docker start [OPTIONS] CONTAINER [CONTAINER...]
+
+ </code>
 
     Ví dụ :bạn muốn khởi chạy một container
+<code>
+
+        C:\Users\Hoang>docker ps
+        CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+        C:\Users\Hoang>docker ps -a
+        CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                            PORTS     NAMES
+        51303185adb8   httpd:latest      "httpd-foreground"       37 hours ago   Exited (0) About a minute ago               my-apache-container
+        bedbb327781b   nginx             "/docker-entrypoint.…"   38 hours ago   Exited (0) About a minute ago               vigilant_herschel
+        C:\Users\Hoang>docker start 6d17809620ad
+        6d17809620ad
+        C:\Users\Hoang>docker ps
+        CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS         PORTS                    NAMES
+        6d17809620ad   getting-started   "docker-entrypoint.s…"   39 hours ago   Up 5 seconds   0.0.0.0:3000->3000/tcp   serene_bohr
+        
+</code>
+    
+#### Docker build : 
+Cách dùng : 
+
+<code>
+
+    docker build [OPTIONS] PATH | URL | -
+
+</code>
+
+#### Docker history : show lịch sử của một image
+Cách dùng : 
+<code>
+
+    docker history <IMAGE>
+
+ </code>
+ Tương tự như sau : 
+<code>
+
+    C:\Users\Hoang\myapp\myapp>docker images
+    REPOSITORY                        TAG                                        IMAGE ID       CREATED         SIZE
+    my-repo/my-image                  lates                                      6ef8db98f260   45 hours ago    145MB
+    hoangnh92/getting-started         latest                                     731e4e9fd554   2 days ago      318MB
+    getting-started                   latest                                     731e4e9fd554   2 days ago      318MB
+    <none>                            <none>                                     43b551fa5dd1   2 days ago      318MB
+    httpd                             latest                                     daab1fa13f86   5 days ago      145MB
+    docker                            latest                                     c365741dcfc2   5 days ago      311MB
+    C:\Users\Hoang\myapp\myapp>docker history docker
+    IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
+    c365741dcfc2   5 days ago    /bin/sh -c #(nop)  CMD []                       0B
+    <missing>      5 days ago    /bin/sh -c #(nop)  ENTRYPOINT ["dockerd-entr…   0B
+    <missing>      5 days ago    /bin/sh -c #(nop)  EXPOSE 2375 2376             0B
+    <missing>      5 days ago    /bin/sh -c #(nop)  VOLUME [/var/lib/docker]     0B
+    <missing>      5 days ago    /bin/sh -c #(nop) COPY file:43a39857f9d05e4d…   7.65kB
+    <missing>      5 days ago    /bin/sh -c set -eux;  wget -O /usr/local/bin…   1.68kB
+    <missing>      5 days ago    /bin/sh -c #(nop)  ENV DIND_COMMIT=1f32e3c95…   0B
+    <missing>      5 days ago    /bin/sh -c set -eux;   apkArch="$(apk --prin…   149MB
+    <missing>      5 days ago    /bin/sh -c set -eux;  addgroup -S dockremap;…   4.77kB
+</code>
+
+#### Docker rename : đổi tên CONTAINER
+Cách dùng : 
+<code>
+
+    docker rename [CONTAINER] <new.name>
+</code>
+
+Tương tự như sau : 
+<code>
+
+    C:\Users\Hoang\myapp\myapp>docker ps
+    CONTAINER ID   IMAGE          COMMAND              CREATED        STATUS          PORTS                  NAMES
+    51303185adb8   httpd:latest   "httpd-foreground"   46 hours ago   Up 49 minutes   0.0.0.0:8080->80/tcp   my-apache-container
+    C:\Users\Hoang\myapp\myapp>docker rename 51303185adb8 NEW_NAME
+    C:\Users\Hoang\myapp\myapp>docker ps
+    CONTAINER ID   IMAGE          COMMAND              CREATED        STATUS          PORTS                  NAMES
+    51303185adb8   httpd:latest   "httpd-foreground"   46 hours ago   Up 50 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
+
+</code>
+
+#### Dockerr restart : khởi động lại CONTAINER
+Cách dùng : 
+<code>
+    
+    docker restart [OPTIONS] CONTAINER [CONTAINER...]
+</code>
+Tương tự như sau : 
     <code>
-    C:\Users\Hoang>docker ps
-    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-    C:\Users\Hoang>docker ps -a
-    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                            PORTS     NAMES
-    51303185adb8   httpd:latest      "httpd-foreground"       37 hours ago   Exited (0) About a minute ago               my-apache-container
-    bedbb327781b   nginx             "/docker-entrypoint.…"   38 hours ago   Exited (0) About a minute ago               vigilant_herschel
+    C:\Users\Hoang\myapp\myapp>docker ps
+    CONTAINER ID   IMAGE          COMMAND              CREATED        STATUS         PORTS                  NAMES
+    51303185adb8   httpd:latest   "httpd-foreground"   46 hours ago   Up 9 seconds   0.0.0.0:8080->80/tcp   NEW_NAME
 
-    C:\Users\Hoang>docker start 6d17809620ad
-    6d17809620ad
+    C:\Users\Hoang\myapp\myapp>docker ps -a
+    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                           PORTS                    NAMES
+    51303185adb8   httpd:latest      "httpd-foreground"       46 hours ago   Up About a minute                0.0.0.0:8080->80/tcp     NEW_NAME
+    bedbb327781b   nginx             "/docker-entrypoint.…"   47 hours ago   Exited (0) 9 hours ago                                    vigilant_herschel
+    6d17809620ad   getting-started   "docker-entrypoint.s…"   2 days ago     Exited (255) About an hour ago   0.0.0.0:3000->3000/tcp   serene_bohr
+    0b1bd5a7e442   ubuntu            "ls /"                   2 days ago     Exited (0) 9 hours ago                                    intelligent_zhukovsky
+    1428058eb3e3   ubuntu            "bash -c 'shuf -i 1-…"   2 days ago     Exited (137) 9 hours ago                                  nostalgic_keller
+    e123122caa9d   getting-started   "docker-entrypoint.s…"   2 days ago     Exited (0) 9 hours ago                                    charming_swirles
 
-    C:\Users\Hoang>docker ps
-    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS         PORTS                    NAMES
-    6d17809620ad   getting-started   "docker-entrypoint.s…"   39 hours ago   Up 5 seconds   0.0.0.0:3000->3000/tcp   serene_bohr
+    C:\Users\Hoang\myapp\myapp>docker restart bedbb327781b
+    bedbb327781b
+
+    C:\Users\Hoang\myapp\myapp>docker ps
+    CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS         PORTS                  NAMES
+    51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
+    bedbb327781b   nginx          "/docker-entrypoint.…"   47 hours ago   Up 6 seconds   0.0.0.0:80->80/tcp     vigilant_herschel
     </code>
-    
-    
+#### Docker pause : tạm dừng CONTAINER đang chạy
+Cách dùng :
+<code>
+
+     Docker pause [CONTAINER]
+</code>
+Tương tự như sau : 
+<code>
+
+    C:\Users\Hoang\myapp\myapp>docker ps
+    CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS         PORTS                  NAMES
+    51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
+    bedbb327781b   nginx          "/docker-entrypoint.…"   47 hours ago   Up 6 seconds   0.0.0.0:80->80/tcp     vigilant_herschel
+    C:\Users\Hoang\myapp\myapp>docker pause bedbb327781b
+    bedbb327781b
+</code>
+
+![docker pause](/image.png)
