@@ -280,21 +280,25 @@ Tương tự như sau :
     51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
     bedbb327781b   nginx          "/docker-entrypoint.…"   47 hours ago   Up 6 seconds   0.0.0.0:80->80/tcp     vigilant_herschel
     </code>
-#### Docker pause : tạm dừng CONTAINER đang chạy
+#### Docker stop  : tạm dừng CONTAINER đang chạy
 Cách dùng :
 <code>
 
-     Docker pause [CONTAINER]
+     Docker stop <CONTAINER>
 </code>
 Tương tự như sau : 
 <code>
 
-    C:\Users\Hoang\myapp\myapp>docker ps
-    CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS         PORTS                  NAMES
-    51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
-    bedbb327781b   nginx          "/docker-entrypoint.…"   47 hours ago   Up 6 seconds   0.0.0.0:80->80/tcp     vigilant_herschel
-    C:\Users\Hoang\myapp\myapp>docker pause bedbb327781b
-    bedbb327781b
+    C:\Users\Hoang>docker ps -a
+    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                      PORTS                    NAMES
+    51303185adb8   httpd:latest      "httpd-foreground"       4 days ago     Up 12 hours                 0.0.0.0:8080->80/tcp     NEW_NAME
+    bedbb327781b   nginx             "/docker-entrypoint.…"   5 days ago     Exited (255) 12 hours ago   0.0.0.0:80->80/tcp       vigilant_herschel
+	C:\Users\Hoang>docker stop 51303185adb8
+	51303185adb8
+	C:\Users\Hoang>docker ps -a
+	CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                      PORTS                    NAMES
+	51303185adb8   httpd:latest      "httpd-foreground"       4 days ago     Exited (0) 11 seconds ago                            NEW_NAME
+	bedbb327781b   nginx             "/docker-entrypoint.…"   5 days ago     Exited (255) 12 hours ago   0.0.0.0:80->80/tcp       vigilant_herschel
 </code>
 
-![docker pause](/image.png)
+Docker rm : dùng để xóa ** 
