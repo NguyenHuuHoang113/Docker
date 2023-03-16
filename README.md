@@ -3,6 +3,7 @@
 ### **Table of content**
 ***
 ####
+*
 * Link bài viết : 
 * Link nguồn tham khảo : 
 * 
@@ -27,7 +28,7 @@ Trong do :
     * **COMMAND**: Lệnh mà bạn muốn chạy trong container.
     * **ARG**: Các đối số cho lệnh được chỉ định trong **COMMAND**
 
-Vi du : ta se chay một container Nginx và liên kết cổng của container với cổng của máy host.
+Vi du : ta se  một container Nginx và liên kết cổng của container với cổng của máy host.
 <br>
     Đầu tiên, bạn cần phải tải image của Nginx bằng lệnh:
 <code>
@@ -105,24 +106,6 @@ Cách dung  :
 
 Ví du
 
-
-Với **COMMAND** :
-<br> - Để tạo một checkpoint từ container đang chạy :
-
-    docker checkpoint create 
-
-<br> - Để check danh sách checkpoints của container : 
-
-    docker checkpoint ls
-
-   và bên cạnh đó để check tất cả checkpoint đang up và exit :
-
-    docker checkpoint ls -a 
-
-<br> - Để xóa checkpoint :
-
-    docker checkpoint rm
-
 #### Docker images : dùng để kiểm tra list repo
 
 Cách dùng : 
@@ -143,26 +126,6 @@ Ví dụ bạn muốn kiểm tra danh sách repo mà mình đang có bạn sẽ 
         getting-started                   latest             731e4e9fd554   46 hours ago    318MB
 </code>
 
-
-#### Docker stop : dừng hoặc ngừng tất cả repo đang chạy 
-
-Cách dùng : 
-<code>
-
-    docker stop [OPTIONS] CONTAINER [CONTAINER...]
-
-</code>
-
-ví dụ bạn muốn tạm dừng 1 CONTAINER đang chạy : 
-<code>
-
-        C:\Users\Hoang>docker ps
-        CONTAINER ID   IMAGE          COMMAND              CREATED        STATUS       PORTS                  NAMES
-        51303185adb8   httpd:latest   "httpd-foreground"   37 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp   my-apache-container
-        C:\Users\Hoang>docker stop 51303185adb8
-        51303185adb8
-
-</code>
 
 #### Docker start : dùng để bắt đầu chạy CONTAINER
 
@@ -211,10 +174,6 @@ Cách dùng :
 
     C:\Users\Hoang\myapp\myapp>docker images
     REPOSITORY                        TAG                                        IMAGE ID       CREATED         SIZE
-    my-repo/my-image                  lates                                      6ef8db98f260   45 hours ago    145MB
-    hoangnh92/getting-started         latest                                     731e4e9fd554   2 days ago      318MB
-    getting-started                   latest                                     731e4e9fd554   2 days ago      318MB
-    <none>                            <none>                                     43b551fa5dd1   2 days ago      318MB
     httpd                             latest                                     daab1fa13f86   5 days ago      145MB
     docker                            latest                                     c365741dcfc2   5 days ago      311MB
     C:\Users\Hoang\myapp\myapp>docker history docker
@@ -226,8 +185,8 @@ Cách dùng :
     <missing>      5 days ago    /bin/sh -c #(nop) COPY file:43a39857f9d05e4d…   7.65kB
     <missing>      5 days ago    /bin/sh -c set -eux;  wget -O /usr/local/bin…   1.68kB
     <missing>      5 days ago    /bin/sh -c #(nop)  ENV DIND_COMMIT=1f32e3c95…   0B
-    <missing>      5 days ago    /bin/sh -c set -eux;   apkArch="$(apk --prin…   149MB
-    <missing>      5 days ago    /bin/sh -c set -eux;  addgroup -S dockremap;…   4.77kB
+    <missing>      5 days ago    /bin/sh -c set -eux;   apkArch="$(apk --prin…  ) 149MB
+    <missing>      5 days ago    /bin/sh -c set -eux;  addgroup -S dockremap;…   4.77kB ]
 </code>
 
 #### Docker rename : đổi tên CONTAINER
@@ -254,27 +213,17 @@ Tương tự như sau :
 Cách dùng : 
 <code>
     
-    docker restart [OPTIONS] CONTAINER [CONTAINER...]
+    docker restart <CONTAINER>
 </code>
 Tương tự như sau : 
     <code>
-
-    C:\Users\Hoang\myapp\myapp>docker ps
-    CONTAINER ID   IMAGE          COMMAND              CREATED        STATUS         PORTS                  NAMES
-    51303185adb8   httpd:latest   "httpd-foreground"   46 hours ago   Up 9 seconds   0.0.0.0:8080->80/tcp   NEW_NAME
 
     C:\Users\Hoang\myapp\myapp>docker ps -a
     CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                           PORTS                    NAMES
     51303185adb8   httpd:latest      "httpd-foreground"       46 hours ago   Up About a minute                0.0.0.0:8080->80/tcp     NEW_NAME
     bedbb327781b   nginx             "/docker-entrypoint.…"   47 hours ago   Exited (0) 9 hours ago                                    vigilant_herschel
-    6d17809620ad   getting-started   "docker-entrypoint.s…"   2 days ago     Exited (255) About an hour ago   0.0.0.0:3000->3000/tcp   serene_bohr
-    0b1bd5a7e442   ubuntu            "ls /"                   2 days ago     Exited (0) 9 hours ago                                    intelligent_zhukovsky
-    1428058eb3e3   ubuntu            "bash -c 'shuf -i 1-…"   2 days ago     Exited (137) 9 hours ago                                  nostalgic_keller
-    e123122caa9d   getting-started   "docker-entrypoint.s…"   2 days ago     Exited (0) 9 hours ago                                    charming_swirles
-
     C:\Users\Hoang\myapp\myapp>docker restart bedbb327781b
     bedbb327781b
-
     C:\Users\Hoang\myapp\myapp>docker ps
     CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS         PORTS                  NAMES
     51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
@@ -301,4 +250,55 @@ Tương tự như sau :
 	bedbb327781b   nginx             "/docker-entrypoint.…"   5 days ago     Exited (255) 12 hours ago   0.0.0.0:80->80/tcp       vigilant_herschel
 </code>
 
-Docker rm : dùng để xóa ** 
+#### Docker rm: dùng để xóa ***CONTAINER***
+<br> Cách dùng : 
+<code>
+
+    docker rm <Container>
+
+</code>
+Tương tự như sau : 
+
+<code>
+
+    C:\Users\Hoang>docker ps -a
+    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                      PORTS                    NAMES
+    51303185adb8   httpd:latest      "httpd-foreground"       4 days ago     Exited (0) 11 seconds ago                            NEW_NAME
+    C:\Users\Hoang>docker rm 51303185adb8
+    51303185adb8
+    C:\Users\Hoang>docker ps -a
+    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                      PORTS                    NAMES
+
+</code>
+<br>
+
+> NOTE : CONTAINER bạn xóa phải ở trạng thái "STOP"  bạn có thể đọc cách stop [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy).
+    Nếu CONTAINER đang ở chạy thái "UP" khi bạn xóa thì nó sẽ hiện ra như này :
+    
+    Error response from daemon: You cannot remove a running container e7bfa2daf3468b97e4eb11c225862af5a42e144dfe935826c8c3110d4be275c2. Stop the container before attempting removal or force remove
+
+#### Docker logs : 
+<br> Cách dùng : hiển thị log của một ***CONTAINER*** 
+<code>
+
+    docker logs <CONTAINER>
+</code>
+
+Tương tự như sau : 
+<code>
+
+    C:\Users\Hoang>docker ps
+    CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS             PORTS                    NAMES
+    e7bfa2daf346   httpd:latest      "httpd-foreground"       12 hours ago   Up 12 hours        80/tcp                   naughty_burnell
+    e123122caa9d   getting-started   "docker-entrypoint.s…"   5 days ago     Up About an hour   0.0.0.0:3001->3000/tcp   charming_swirles
+    C:\Users\Hoang>docker logs e123122caa9d
+    Using sqlite database at /etc/todos/todo.db
+    Listening on port 3000
+    Using sqlite database at /etc/todos/todo.db
+    Listening on port 3000
+    Using sqlite database at /etc/todos/todo.db
+    Listening on port 3000
+</code>
+
+
+
