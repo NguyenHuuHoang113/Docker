@@ -28,7 +28,7 @@ Trong do :
     * **COMMAND**: Lệnh mà bạn muốn chạy trong container.
     * **ARG**: Các đối số cho lệnh được chỉ định trong **COMMAND**
 
-Vi du : ta se  một container Nginx và liên kết cổng của container với cổng của máy host.
+Vi du : Để  một container Nginx và liên kết cổng của container với cổng của máy host.
 <br>
     Đầu tiên, bạn cần phải tải image của Nginx bằng lệnh:
 <code>
@@ -298,7 +298,136 @@ Tương tự như sau :
     Listening on port 3000
     Using sqlite database at /etc/todos/todo.db
     Listening on port 3000
+</code> 
+
+#### Docker login : đăng nhập vào CONTAINER 
+Cách dùng : 
+<code> 
+    
+    docker login <CONTAINER>
+
+
+#### Docker pull : 
+Cách dùng : Để download một image từ a registry
+<code>
+    docker  pull <name image>
+</code>
+Tương tự như sau : 
+        ví dụ tôi muốn download image của nginx : 
+        
+<code>
+    C:\Users\Hoang>docker pull nginx
+    Using default tag: latest
+    latest: Pulling from library/nginx
+    3f9582a2cbe7: Pull complete
+    9a8c6f286718: Pull complete
+    e81b85700bc2: Pull complete
+    73ae4d451120: Pull complete
+    6058e3569a68: Pull complete
+    3a1b8f201356: Pull complete
+    Digest: sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2
+    Status: Downloaded newer image for nginx:latest
+    docker.io/library/nginx:latest
+
 </code>
 
 
+#### Docker push : dùng để update image đến a registry
+Cách dùng : 
+<code>
 
+    C:\Users\Hoang>docker push nginx
+    Using default tag: latest
+    The push refers to repository [docker.io/library/nginx]
+    101af4ba983b: Layer already exists
+    d8466e142d87: Layer already exists
+    83ba6d8ffb8c: Layer already exists
+    e161c82b34d2: Layer already exists
+    4dc5cd799a08: Layer already exists
+    650abce4b096: Waiting
+    denied: requested access to the resource is denied
+    C:\Users\Hoang>docker tag nginx hoangnh92/huuhoang
+    C:\Users\Hoang>docker push hoangnh92/huuhoang
+    Using default tag: latest
+    The push refers to repository [docker.io/hoangnh92/huuhoang]
+    101af4ba983b: Mounted from library/nginx
+    d8466e142d87: Mounted from library/nginx
+    83ba6d8ffb8c: Mounted from library/nginx
+    e161c82b34d2: Mounted from library/nginx
+    4dc5cd799a08: Mounted from library/nginx
+    650abce4b096: Pushed
+    latest: digest: sha256:942ae2dfd73088b54d7151a3c3fd5af038a51c50029bfcfd21f1e650d9579967 size: 1570
+</code>
+
+Docker tag : 
+Cách dùng : 
+<code>
+
+</code>
+
+Tương tự như sau :
+
+Docker volume : quản lý volumes
+Cách dùng : 
+
+<code>
+
+    docker volume <COMMAND> 
+</code>
+
+Tương tự như sau : 
+
+- Để tạo volume : 
+
+<code>
+
+    docker volume create <NAME_VOLUME>
+</code>
+     
+     Ví dụ : tạo một volume tên là "Hello"
+
+     <code> 
+
+     C:\Users\Hoang>docker volume create hello
+    hello
+    </code>
+
+- Để check list volumes : 
+
+<code>
+
+    C:\Users\Hoang>docker volume list
+    DRIVER    VOLUME NAME
+    local     556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+    local     hello
+    local     todo-db
+    local     volume-github
+</code>
+
+- Để xóa volumes : 
+
+Cách dùng :
+
+<code>
+
+    docker volume rm <NAME_VOLUME>
+</code>
+
+Tương tự như sau : 
+
+<code> 
+
+    C:\Users\Hoang>docker volume list
+    DRIVER    VOLUME NAME
+    local     556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+    local     hello
+    local     todo-db
+    local     volume-github
+    C:\Users\Hoang>docker volume rm 556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+    556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+    C:\Users\Hoang>docker volume list
+    DRIVER    VOLUME NAME
+    local     hello
+    local     todo-db
+    local     volume-github
+</code>
