@@ -5,24 +5,25 @@
 ####
 - [**Introduction Docker**](#introduction-docker)
   - [**Table of content**](#table-of-content)
-    - [](#)
   - [**Introduction** :](#introduction-)
   - [**Docker run reference**](#docker-run-reference)
-    - [Docker run : được sử dụng để chạy một container từ một image](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
+    - [Docker run](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
   - [**Docker**](#docker)
-    - [Docker attach : được sử dụng để gắn kết một tiến trình đang chạy trong một container Docker và kết nối input/output của terminal hiện tại với tiến trình đó.](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
-    - [Docker images : dùng để kiểm tra list repo](#docker-images--dùng-để-kiểm-tra-list-repo)
-    - [Docker start : dùng để bắt đầu chạy CONTAINER](#docker-start--dùng-để-bắt-đầu-chạy-container)
-    - [Docker build : Build một image của một Dockerfile](#docker-build--build-một-image-của-một-dockerfile)
-    - [Docker history : show lịch sử của một image](#docker-history--show-lịch-sử-của-một-image)
-    - [Docker rename : đổi tên CONTAINER](#docker-rename--đổi-tên-container)
-    - [Dockerr restart : khởi động lại CONTAINER](#dockerr-restart--khởi-động-lại-container)
-    - [Docker stop  : tạm dừng CONTAINER đang chạy](#docker-stop---tạm-dừng-container-đang-chạy)
-    - [Docker rm: dùng để xóa ***CONTAINER***](#docker-rm-dùng-để-xóa-container)
-    - [Docker logs : hiển thị log của một ***CONTAINER***](#docker-logs--hiển-thị-log-của-một-container)
-    - [Docker login : đăng nhập vào CONTAINER](#docker-login--đăng-nhập-vào-container)
-    - [Docker pull : để download một image từ a registry](#docker-pull--để-download-một-image-từ-a-registry)
-    - [Docker push : dùng để update image đến a registry](#docker-push--dùng-để-update-image-đến-a-registry)
+    - [Docker attach](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
+    - [Docker images](#docker-images--dùng-để-kiểm-tra-list-repo)
+    - [Docker start](#docker-start--dùng-để-bắt-đầu-chạy-container)
+    - [Docker build](#docker-build--build-một-image-của-một-dockerfile)
+    - [Docker history](#docker-history--show-lịch-sử-của-một-image)
+    - [Docker rename](#docker-rename--đổi-tên-container)
+    - [Dockerr restart](#dockerr-restart--khởi-động-lại-container)
+    - [Docker stop](#docker-stop---tạm-dừng-container-đang-chạy)
+    - [Docker rm](#docker-rm-dùng-để-xóa-container)
+    - [Docker logs](#docker-logs--hiển-thị-log-của-một-container)
+    - [Docker login](#docker-login--đăng-nhập-vào-container)
+    - [Docker pull](#docker-pull--để-download-một-image-từ-a-registry)
+    - [Docker push](#docker-push--dùng-để-update-image-đến-a-registry)
+    - [Docker tag](#docker-tag-cho-phép-gán-một-hoặc-nhiều-tag-tới-một-image-docker-đã-tồn-tại)
+    - [Docker volume](#docker-volume--để-lưu-trữ-và-quản-lý-dữ-liệu-trong-một-container-docker)
   
 ### **Introduction** : 
  **Docker** : một  open platform của developing, shipping, and running applications ,  a technology cho phép  us to wrap ứng dụng  ___one package___, which are ___portable___ (run anywhere) and ___executable___ (run anytime).
@@ -205,6 +206,7 @@ ví dụ , tôi muốn build dòng chữ  **print("Hello, Docker!")** :
     D:\New folder (2)\code.c> docker run test
     Hello, Docker!
 </code>
+
 #### Docker history : show lịch sử của một image
 Cách dùng : 
 <code>
@@ -272,6 +274,7 @@ Tương tự như sau :
     51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
     bedbb327781b   nginx          "/docker-entrypoint.…"   47 hours ago   Up 6 seconds   0.0.0.0:80->80/tcp     vigilant_herschel
  </code>
+
 #### Docker stop  : tạm dừng CONTAINER đang chạy
 Cách dùng :
 <code>
@@ -403,15 +406,22 @@ Cách dùng :
     latest: digest: sha256:942ae2dfd73088b54d7151a3c3fd5af038a51c50029bfcfd21f1e650d9579967 size: 1570
 </code>
 
-Docker tag : 
+#### Docker tag :cho phép gán một hoặc nhiều tag tới một ***image Docker*** đã tồn tại.
 Cách dùng : 
 <code>
 
+    docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
 </code>
 
-Tương tự như sau :
+Tương tự như sau : 
 
-Docker volume : để lưu trữ và quản lý dữ liệu trong một container Docker.
+<code>
+
+    C:\Users\Hoang>docker tag nginx hoangnh92/huuhoang
+</code>
+
+#### Docker volume : để lưu trữ và quản lý dữ liệu trong một ***CONTAINER DOCKER***.
 Cách dùng : 
 
 <code>
