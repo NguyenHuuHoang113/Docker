@@ -216,7 +216,7 @@ Cách dùng :
     docker restart <CONTAINER>
 </code>
 Tương tự như sau : 
-    <code>
+<code>
 
     C:\Users\Hoang\myapp\myapp>docker ps -a
     CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                           PORTS                    NAMES
@@ -228,7 +228,7 @@ Tương tự như sau :
     CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS         PORTS                  NAMES
     51303185adb8   httpd:latest   "httpd-foreground"       46 hours ago   Up 2 minutes   0.0.0.0:8080->80/tcp   NEW_NAME
     bedbb327781b   nginx          "/docker-entrypoint.…"   47 hours ago   Up 6 seconds   0.0.0.0:80->80/tcp     vigilant_herschel
-    </code>
+ </code>
 #### Docker stop  : tạm dừng CONTAINER đang chạy
 Cách dùng :
 <code>
