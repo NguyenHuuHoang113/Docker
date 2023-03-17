@@ -13,21 +13,23 @@
     - [Docker attach : được sử dụng để gắn kết một tiến trình đang chạy trong một container Docker và kết nối input/output của terminal hiện tại với tiến trình đó.](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
     - [Docker images : dùng để kiểm tra list repo](#docker-images--dùng-để-kiểm-tra-list-repo)
     - [Docker start : dùng để bắt đầu chạy CONTAINER](#docker-start--dùng-để-bắt-đầu-chạy-container)
-    - [Docker build :](#docker-build-)
+    - [Docker build : Build một image của một Dockerfile](#docker-build--build-một-image-của-một-dockerfile)
     - [Docker history : show lịch sử của một image](#docker-history--show-lịch-sử-của-một-image)
     - [Docker rename : đổi tên CONTAINER](#docker-rename--đổi-tên-container)
     - [Dockerr restart : khởi động lại CONTAINER](#dockerr-restart--khởi-động-lại-container)
     - [Docker stop  : tạm dừng CONTAINER đang chạy](#docker-stop---tạm-dừng-container-đang-chạy)
     - [Docker rm: dùng để xóa ***CONTAINER***](#docker-rm-dùng-để-xóa-container)
-    - [Docker logs :](#docker-logs-)
+    - [Docker logs : hiển thị log của một ***CONTAINER***](#docker-logs--hiển-thị-log-của-một-container)
     - [Docker login : đăng nhập vào CONTAINER](#docker-login--đăng-nhập-vào-container)
-    - [Docker pull :](#docker-pull-)
+    - [Docker pull : để download một image từ a registry](#docker-pull--để-download-một-image-từ-a-registry)
     - [Docker push : dùng để update image đến a registry](#docker-push--dùng-để-update-image-đến-a-registry)
+  
 ### **Introduction** : 
  **Docker** : một  open platform của developing, shipping, and running applications ,  a technology cho phép  us to wrap ứng dụng  ___one package___, which are ___portable___ (run anywhere) and ___executable___ (run anytime).
 
- **A container** :  một đối tượng thực thi của một image Docker.
- **Image** :  là một mẫu để tạo ra các container
+ **A container** : là một quá trình đang chạy trên máy tính của bạn, được chạy trong một môi trường cô lập và không tương tác trực tiếp với các quá trình khác trên máy chủ.
+<br> **Image** : là một read-only của một phần mềm hoặc ứng dụng cùng với các hướng dẫn để tạo ra một container Docker tương ứng .
+<br> **Volume** : để lưu trữ và quản lý dữ liệu dùng chung giữa các container
 
 
 ### **Docker run reference** 
@@ -39,10 +41,11 @@
 </code>
 
 Trong do : 
-    * **OPTIONS** : Các tùy chọn để định cấu hình container, ví dụ như cổng kết nối, biến môi trường, quyền truy cập vào volume, và nhiều hơn nữa.
-    * **IMAGE**: Docker image mà bạn muốn chạy container từ.
-    * **COMMAND**: Lệnh mà bạn muốn chạy trong container.
-    * **ARG**: Các đối số cho lệnh được chỉ định trong **COMMAND**
+
+* **OPTIONS** : Các tùy chọn để định cấu hình container, ví dụ như cổng kết nối, biến môi trường, quyền truy cập vào volume, và nhiều hơn nữa.
+* **IMAGE**: Docker image mà bạn muốn chạy container từ.
+* **COMMAND**: Lệnh mà bạn muốn chạy trong container.
+* **ARG**: Các đối số cho lệnh được chỉ định trong **COMMAND**
 
 Vi du : Để  một container Nginx và liên kết cổng của container với cổng của máy host.
 <br>
@@ -162,7 +165,9 @@ Ví dụ bạn muốn kiểm tra danh sách repo mà mình đang có bạn sẽ 
         
 </code>
     
-#### Docker build : 
+#### Docker build : Build một image của một Dockerfile
+
+
 Cách dùng : 
 
 <code>
@@ -171,6 +176,35 @@ Cách dùng :
 
 </code>
 
+Tương tự như sau : 
+ví dụ , tôi muốn build dòng chữ  **print("Hello, Docker!")** :
+
+<code>
+
+    D:\New folder (2)\code.c> docker build -t test .
+    [+] Building 6.1s (9/9) FINISHED
+    => [internal] load build definition from Dockerfile                                                                        0.1s
+    => => transferring dockerfile: 141B                                                                                        0.0s 
+    => [internal] load .dockerignore                                                                                           0.1s 
+    => => transferring context: 2B                                                                                             0.0s 
+    => [internal] load metadata for docker.io/library/alpine:latest                                                            0.0s 
+    => [1/4] FROM docker.io/library/alpine:latest                                                                              0.0s
+    => [internal] load build context                                                                                           0.8s 
+    => => transferring context: 201B                                                                                           0.6s 
+    => [2/4] RUN apk add --no-cache python3                                                                                    5.2s 
+    => [3/4] COPY . /app                                                                                                       0.1s
+    => [4/4] WORKDIR /app                                                                                                      0.1s
+    => exporting to image                                                                                                      0.5s
+    => => exporting layers                                                                                                     0.5s
+    => => writing image sha256:7a5167b4e420fba64f7250d4e8daaf712a0f911766848332dc44d0ff41723646                                0.0s
+    => => naming to docker.io/library/test                                                                                     0.0s
+    PS D:\New folder (2)\code.c> docker images
+    >>
+    REPOSITORY                        TAG                                        IMAGE ID       CREATED          SIZE
+    test                              latest                                     7a5167b4e420   31 seconds ago   56.2MB
+    D:\New folder (2)\code.c> docker run test
+    Hello, Docker!
+</code>
 #### Docker history : show lịch sử của một image
 Cách dùng : 
 <code>
@@ -286,8 +320,8 @@ Tương tự như sau :
     
     Error response from daemon: You cannot remove a running container e7bfa2daf3468b97e4eb11c225862af5a42e144dfe935826c8c3110d4be275c2. Stop the container before attempting removal or force remove
 
-#### Docker logs : 
-<br> Cách dùng : hiển thị log của một ***CONTAINER*** 
+#### Docker logs : hiển thị log của một ***CONTAINER*** 
+<br> Cách dùng : 
 <code>
 
     docker logs <CONTAINER>
@@ -316,8 +350,8 @@ Cách dùng :
     docker login <CONTAINER>
 
 
-#### Docker pull : 
-Cách dùng : Để download một image từ a registry
+#### Docker pull : để download một image từ a registry
+Cách dùng : 
 <code>
     docker  pull <name image>
 </code>
@@ -377,7 +411,7 @@ Cách dùng :
 
 Tương tự như sau :
 
-Docker volume : quản lý volumes
+Docker volume : để lưu trữ và quản lý dữ liệu trong một container Docker.
 Cách dùng : 
 
 <code>
