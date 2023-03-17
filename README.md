@@ -5,25 +5,26 @@
 ####
 - [**Introduction Docker**](#introduction-docker)
   - [**Table of content**](#table-of-content)
+    - [](#)
   - [**Introduction** :](#introduction-)
   - [**Docker run reference**](#docker-run-reference)
-    - [Docker run](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
+    - [Docker run : được sử dụng để chạy một container từ một image](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
   - [**Docker**](#docker)
-    - [Docker attach](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
-    - [Docker images](#docker-images--dùng-để-kiểm-tra-list-repo)
-    - [Docker start](#docker-start--dùng-để-bắt-đầu-chạy-container)
-    - [Docker build](#docker-build--build-một-image-của-một-dockerfile)
-    - [Docker history](#docker-history--show-lịch-sử-của-một-image)
-    - [Docker rename](#docker-rename--đổi-tên-container)
-    - [Dockerr restart](#dockerr-restart--khởi-động-lại-container)
-    - [Docker stop](#docker-stop---tạm-dừng-container-đang-chạy)
-    - [Docker rm](#docker-rm-dùng-để-xóa-container)
-    - [Docker logs](#docker-logs--hiển-thị-log-của-một-container)
-    - [Docker login](#docker-login--đăng-nhập-vào-container)
-    - [Docker pull](#docker-pull--để-download-một-image-từ-a-registry)
-    - [Docker push](#docker-push--dùng-để-update-image-đến-a-registry)
-    - [Docker tag](#docker-tag-cho-phép-gán-một-hoặc-nhiều-tag-tới-một-image-docker-đã-tồn-tại)
-    - [Docker volume](#docker-volume--để-lưu-trữ-và-quản-lý-dữ-liệu-trong-một-container-docker)
+    - [Docker attach : được sử dụng để gắn kết một tiến trình đang chạy trong một container Docker và kết nối input/output của terminal hiện tại với tiến trình đó.](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
+    - [Docker images : dùng để kiểm tra list repo](#docker-images--dùng-để-kiểm-tra-list-repo)
+    - [Docker start : dùng để bắt đầu chạy CONTAINER](#docker-start--dùng-để-bắt-đầu-chạy-container)
+    - [Docker build : Build một image của một Dockerfile](#docker-build--build-một-image-của-một-dockerfile)
+    - [Docker history : show lịch sử của một image](#docker-history--show-lịch-sử-của-một-image)
+    - [Docker rename : đổi tên CONTAINER](#docker-rename--đổi-tên-container)
+    - [Dockerr restart : khởi động lại CONTAINER](#dockerr-restart--khởi-động-lại-container)
+    - [Docker stop  : tạm dừng CONTAINER đang chạy](#docker-stop---tạm-dừng-container-đang-chạy)
+    - [Docker rm: dùng để xóa ***CONTAINER***](#docker-rm-dùng-để-xóa-container)
+    - [Docker logs : hiển thị log của một ***CONTAINER***](#docker-logs--hiển-thị-log-của-một-container)
+    - [Docker login : đăng nhập vào CONTAINER](#docker-login--đăng-nhập-vào-container)
+    - [Docker pull : để download một image từ a registry](#docker-pull--để-download-một-image-từ-a-registry)
+    - [Docker push : dùng để update image đến a registry](#docker-push--dùng-để-update-image-đến-a-registry)
+    - [Docker tag :cho phép gán một hoặc nhiều tag tới một ***image Docker*** đã tồn tại.](#docker-tag-cho-phép-gán-một-hoặc-nhiều-tag-tới-một-image-docker-đã-tồn-tại)
+    - [Docker volume : để lưu trữ và quản lý dữ liệu trong một ***CONTAINER DOCKER***.](#docker-volume--để-lưu-trữ-và-quản-lý-dữ-liệu-trong-một-container-docker)
   
 ### **Introduction** : 
  **Docker** : một  open platform của developing, shipping, and running applications ,  a technology cho phép  us to wrap ứng dụng  ___one package___, which are ___portable___ (run anywhere) and ___executable___ (run anytime).
@@ -433,55 +434,63 @@ Tương tự như sau :
 
 - Để tạo volume : 
 
-<code>
+    <code>
 
-    docker volume create <NAME_VOLUME>
-</code>
+        docker volume create <NAME_VOLUME>
+    </code>
      
      Ví dụ : tạo một volume tên là "Hello"
 
-     <code> 
+    <code> 
 
      C:\Users\Hoang>docker volume create hello
     hello
+
     </code>
 
 - Để check list volumes : 
 
-<code>
+    Cach dung :
+    <code>
+        
+         docker volume list
 
-    C:\Users\Hoang>docker volume list
-    DRIVER    VOLUME NAME
-    local     556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
-    local     hello
-    local     todo-db
-    local     volume-github
-</code>
+    </code>
+    Tương tự như sau : 
+    <code>
 
-- Để xóa volumes : 
+        C:\Users\Hoang>docker volume list
+        DRIVER    VOLUME NAME
+        local     556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+        local     hello
+        local     todo-db
+        local     volume-github
+    </code>
 
-Cách dùng : 
+- Để xóa volumes :   
 
-<code>
+    <br> Cach dung : 
 
-    docker volume rm <NAME_VOLUME>
-</code>
+    <code>
 
-Tương tự như sau : 
+        docker volume rm <VOLUME NAME>
+    </code>    
 
-<code> 
+    Tương tự như sau : 
+    
+    <code> 
 
-    C:\Users\Hoang>docker volume list
-    DRIVER    VOLUME NAME
-    local     556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
-    local     hello
-    local     todo-db
-    local     volume-github
-    C:\Users\Hoang>docker volume rm 556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
-    556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
-    C:\Users\Hoang>docker volume list
-    DRIVER    VOLUME NAME
-    local     hello
-    local     todo-db
-    local     volume-github
-</code>
+        C:\Users\Hoang>docker volume list
+        DRIVER    VOLUME NAME
+        local     556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+        local     hello
+        local     todo-db
+        local     volume-github
+        C:\Users\Hoang>docker volume rm 556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+        556c7103312534d7ae171fe3d3550f0de8f0fefa12b3fe36e461f0e38dd7e062
+        C:\Users\Hoang>docker volume list
+        DRIVER    VOLUME NAME
+        local     hello
+        local     todo-db
+        local     volume-github
+    </code>
