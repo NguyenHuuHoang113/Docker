@@ -3,7 +3,15 @@
 ### **Table of content**
 ***
 ####
-*
+* [`docker run`](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
+* [`docker attach`](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
+* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
 * Link bài viết : 
 * Link nguồn tham khảo : 
 * 
@@ -15,7 +23,7 @@
 
 
 ### **Docker run reference** 
-#### Docker run :  là một lệnh trong Docker CLI (Command Line Interface) được sử dụng để chạy một container từ một image
+#### Docker run : được sử dụng để chạy một container từ một image
 <br> Cách dùng :
  <code>
 
@@ -90,21 +98,17 @@ Ket qua : se duoc in ra mot [container ID]
 
    <code>
     
-        docker attach [OPTIONS] <container>
+        docker attach [OPTIONS] <CONTAINER>
 
    </code>
 
-Vi du
+Tương tự như sau : 
+<code>
 
-#### Docker build : được sử dụng để tạo một Docker image mới từ một Dockerfile . 
-Cách dung  : 
-    <code>
-
-        docker build [OPTIONS] PATH | URL | -
-
+    C:\Users\Hoang>docker attach test
+    / # ls
+    bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
 </code>
-
-Ví du
 
 #### Docker images : dùng để kiểm tra list repo
 
@@ -316,6 +320,7 @@ Tương tự như sau :
         ví dụ tôi muốn download image của nginx : 
         
 <code>
+
     C:\Users\Hoang>docker pull nginx
     Using default tag: latest
     latest: Pulling from library/nginx
