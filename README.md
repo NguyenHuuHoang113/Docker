@@ -3,18 +3,26 @@
 ### **Table of content**
 ***
 ####
-* [`docker run`](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
-* [`docker attach`](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* [`docker stop`](#docker-stop--tạm-dừng-container-đang-chạy)
-* Link bài viết : 
-* Link nguồn tham khảo : 
-* 
+- [**Introduction Docker**](#introduction-docker)
+  - [**Table of content**](#table-of-content)
+    - [](#)
+  - [**Introduction** :](#introduction-)
+  - [**Docker run reference**](#docker-run-reference)
+    - [Docker run : được sử dụng để chạy một container từ một image](#docker-run--được-sử-dụng-để-chạy-một-container-từ-một-image)
+  - [**Docker**](#docker)
+    - [Docker attach : được sử dụng để gắn kết một tiến trình đang chạy trong một container Docker và kết nối input/output của terminal hiện tại với tiến trình đó.](#docker-attach--được-sử-dụng-để-gắn-kết-một-tiến-trình-đang-chạy-trong-một-container-docker-và-kết-nối-inputoutput-của-terminal-hiện-tại-với-tiến-trình-đó)
+    - [Docker images : dùng để kiểm tra list repo](#docker-images--dùng-để-kiểm-tra-list-repo)
+    - [Docker start : dùng để bắt đầu chạy CONTAINER](#docker-start--dùng-để-bắt-đầu-chạy-container)
+    - [Docker build :](#docker-build-)
+    - [Docker history : show lịch sử của một image](#docker-history--show-lịch-sử-của-một-image)
+    - [Docker rename : đổi tên CONTAINER](#docker-rename--đổi-tên-container)
+    - [Dockerr restart : khởi động lại CONTAINER](#dockerr-restart--khởi-động-lại-container)
+    - [Docker stop  : tạm dừng CONTAINER đang chạy](#docker-stop---tạm-dừng-container-đang-chạy)
+    - [Docker rm: dùng để xóa ***CONTAINER***](#docker-rm-dùng-để-xóa-container)
+    - [Docker logs :](#docker-logs-)
+    - [Docker login : đăng nhập vào CONTAINER](#docker-login--đăng-nhập-vào-container)
+    - [Docker pull :](#docker-pull-)
+    - [Docker push : dùng để update image đến a registry](#docker-push--dùng-để-update-image-đến-a-registry)
 ### **Introduction** : 
  **Docker** : một  open platform của developing, shipping, and running applications ,  a technology cho phép  us to wrap ứng dụng  ___one package___, which are ___portable___ (run anywhere) and ___executable___ (run anytime).
 
@@ -86,9 +94,6 @@ Ket qua : se duoc in ra mot [container ID]
 > NOTE : chung ta co the kiem tra thong tin  ***CONTAINER*** bang cach : *docker ps* 
 
 ![docker ps ](/docker%20ps.png)
-
-
-#### Use the Docker command line docker
 
 ### **Docker** 
 ***
@@ -411,7 +416,7 @@ Tương tự như sau :
 
 - Để xóa volumes : 
 
-Cách dùng :
+Cách dùng : 
 
 <code>
 
